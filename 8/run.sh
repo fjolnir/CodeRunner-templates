@@ -1,0 +1,1 @@
+cd "$curdir"; /usr/local/bin/python "$1" "${@:3}"

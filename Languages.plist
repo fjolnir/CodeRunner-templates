@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>CodeTemplate</key>
+		<string></string>
+		<key>CompilerFlags</key>
+		<string></string>
+		<key>CompilerScript</key>
+		<false/>
+		<key>FileExtension</key>
+		<string>scpt</string>
+		<key>ID</key>
+		<integer>1</integer>
+		<key>Name</key>
+		<string>AppleScript</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>echo -e "tell application \"AppleScript Runner\"\ndo script \"$PWD/$filename\"\nend" | osascript; exit;</string>
+		<key>SyntaxMode</key>
+		<string>AppleScript</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>#include &lt;stdio.h&gt;
+
+int main(int argc, char *argv[]) {
+	%@
+}</string>
+		<key>CompilerFlags</key>
+		<string>-std=gnu1x -Wall -Wno-missing-braces -Wno-unused-function -framework Accelerate -framework OpenGL -framework GLUT -fms-extensions -Wno-microsoft -framework CoreFoundation</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>c</string>
+		<key>ID</key>
+		<integer>2</integer>
+		<key>Name</key>
+		<string>C</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>./$compiler</string>
+		<key>SyntaxMode</key>
+		<string>C</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>#include &lt;iostream&gt;
+
+using namespace std;
+int main(int argc, char *argv[]) {
+	%@
+}</string>
+		<key>CompilerFlags</key>
+		<string>-ObjC++</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>cpp</string>
+		<key>ID</key>
+		<integer>3</integer>
+		<key>Name</key>
+		<string>C++</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>./$compiler</string>
+		<key>SyntaxMode</key>
+		<string>C++</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>class Untitled {
+	public static void main(String[] args) {
+		%@
+	}
+}</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>java</string>
+		<key>ID</key>
+		<integer>4</integer>
+		<key>Name</key>
+		<string>Java</string>
+		<key>OutputEncoding</key>
+		<integer>30</integer>
+		<key>RunCommand</key>
+		<string>java $compiler</string>
+		<key>SyntaxMode</key>
+		<string>Java</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string></string>
+		<key>CompilerScript</key>
+		<false/>
+		<key>FileExtension</key>
+		<string>js</string>
+		<key>ID</key>
+		<integer>11</integer>
+		<key>Name</key>
+		<string>JavaScript (Node.js)</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>node $filename</string>
+		<key>SyntaxMode</key>
+		<string>JavaScript</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>#import &lt;Foundation/Foundation.h&gt;
+
+int main(int argc, char *argv[]) {
+	NSAutoreleasePool *p = [[NSAutoreleasePool alloc] init];
+
+	%@
+
+	[p release];
+}</string>
+		<key>CompilerFlags</key>
+		<string>-std=c99 -framework Foundation -framework Cocoa -F/Library/Frameworks -framework UIKit -all_load -lobjc</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>m</string>
+		<key>ID</key>
+		<integer>5</integer>
+		<key>Name</key>
+		<string>Objective-C</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>./$compiler </string>
+		<key>SyntaxMode</key>
+		<string>Objective-C</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string></string>
+		<key>CompilerScript</key>
+		<false/>
+		<key>FileExtension</key>
+		<string>pl</string>
+		<key>ID</key>
+		<integer>6</integer>
+		<key>Name</key>
+		<string>Perl</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>perl $filename</string>
+		<key>SyntaxMode</key>
+		<string>Perl</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string></string>
+		<key>CompilerScript</key>
+		<false/>
+		<key>FileExtension</key>
+		<string>py</string>
+		<key>ID</key>
+		<integer>8</integer>
+		<key>Name</key>
+		<string>Python</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>/usr/local/bin/python $filename</string>
+		<key>SyntaxMode</key>
+		<string>Python</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string></string>
+		<key>CompilerScript</key>
+		<false/>
+		<key>FileExtension</key>
+		<string>rb</string>
+		<key>ID</key>
+		<integer>9</integer>
+		<key>Name</key>
+		<string>Ruby</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>~/.rbenv/shims/ruby $filename</string>
+		<key>SyntaxMode</key>
+		<string>Ruby</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>#!/bin/bash
+
+%@</string>
+		<key>CompilerScript</key>
+		<false/>
+		<key>FileExtension</key>
+		<string>sh</string>
+		<key>ID</key>
+		<integer>10</integer>
+		<key>Name</key>
+		<string>Shell Script</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>bash $filename</string>
+		<key>SyntaxMode</key>
+		<string>Shell Script</string>
+	</dict>
+	<dict>
+		<key>FileExtension</key>
+		<string>hs</string>
+		<key>ID</key>
+		<integer>299412763</integer>
+		<key>Name</key>
+		<string>Haskell</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>runhaskell $filename</string>
+		<key>SyntaxMode</key>
+		<string>Generic</string>
+	</dict>
+	<dict>
+		<key>FileExtension</key>
+		<string>lua</string>
+		<key>ID</key>
+		<integer>1809711531</integer>
+		<key>Name</key>
+		<string>Lua</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>luajit -joff $filename</string>
+		<key>SyntaxMode</key>
+		<string>Generic</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>int main(int argc, char *argv[]) {
+	%@
+}</string>
+		<key>CompilerFlags</key>
+		<string>-std=c99 -fobjc-exceptions -lobjc -fno-constant-cfstrings -fconstant-string-class=FConstantString -framework CoreFoundation</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>m</string>
+		<key>ID</key>
+		<integer>186144483</integer>
+		<key>Name</key>
+		<string>Objective-C (Raw)</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>./$compiler</string>
+		<key>SyntaxMode</key>
+		<string>Objective-C</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>section .data
+hello_world     db      "Hello World!", 0x0a
+ 
+section .text
+global start
+ 
+start:
+mov rax, 0x2000004      ; System call write = 4
+mov rdi, 1              ; Write to standard out = 1
+mov rsi, hello_world    ; The address of hello_world string
+mov rdx, 14             ; The size to write
+syscall                 ; Invoke the kernel
+mov rax, 0x2000001      ; System call number for exit = 1
+mov rdi, 0              ; Exit success = 0
+syscall                 ; Invoke the kernel
+</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>s</string>
+		<key>ID</key>
+		<integer>3651155034</integer>
+		<key>Name</key>
+		<string>ASM</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>./$compiler</string>
+		<key>SyntaxMode</key>
+		<string>Generic</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello, %@")
+}</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>go</string>
+		<key>ID</key>
+		<integer>299019792</integer>
+		<key>Name</key>
+		<string>Go</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>./$compiler</string>
+		<key>SyntaxMode</key>
+		<string>C</string>
+	</dict>
+	<dict>
+		<key>CompilerFlags</key>
+		<string>-std=gnu99 -Wall -Wno-missing-braces -Wno-unused-function -fverbose-asm</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>c</string>
+		<key>ID</key>
+		<integer>3365701747</integer>
+		<key>Name</key>
+		<string>C -&gt; ASM (x64)</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>cat $compiler</string>
+		<key>SyntaxMode</key>
+		<string>C</string>
+	</dict>
+	<dict>
+		<key>CompilerFlags</key>
+		<string>-std=gnu99 -Wall -Wno-missing-braces -Wno-unused-function -arch i386 -fverbose-asm</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>c</string>
+		<key>ID</key>
+		<integer>3736738752</integer>
+		<key>Name</key>
+		<string>C -&gt; ASM (x86)</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>cat $compiler</string>
+		<key>SyntaxMode</key>
+		<string>C</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>@hello = internal constant [13 x i8] c"hello, world\00"
+
+declare i32 @puts(i8*)
+
+define i32 @main() {
+start:
+  %0 = call i32 @puts(i8* getelementptr inbounds ([13 x i8]* @hello, i32 0, i32 0))
+  ret i32 0
+}</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>ll</string>
+		<key>ID</key>
+		<integer>2331045535</integer>
+		<key>Name</key>
+		<string>LLVM</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>/usr/local/clang/bin/lli "$compiler" -load /System/Library/Frameworks/Foundation.framework/Foundation</string>
+		<key>SyntaxMode</key>
+		<string>C</string>
+	</dict>
+	<dict>
+		<key>FileExtension</key>
+		<string>st</string>
+		<key>ID</key>
+		<integer>3903776067</integer>
+		<key>Name</key>
+		<string>Smalltalk</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>gst $filename</string>
+		<key>SyntaxMode</key>
+		<string>Generic</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>#import &lt;Foundation/Foundation.h&gt;
+
+int main(int argc, char *argv[]) {
+	NSAutoreleasePool *p = [[NSAutoreleasePool alloc] init];
+
+	%@
+
+	[p release];
+}</string>
+		<key>CompilerFlags</key>
+		<string>-std=c99 -O2</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>m</string>
+		<key>ID</key>
+		<integer>3820115803</integer>
+		<key>Name</key>
+		<string>Objective-C -&gt; LLVM</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>cat $compiler </string>
+		<key>SyntaxMode</key>
+		<string>Objective-C</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>#import &lt;Foundation/Foundation.h&gt;
+
+int main(int argc, char *argv[]) {
+	NSAutoreleasePool *p = [[NSAutoreleasePool alloc] init];
+
+	%@
+
+	[p release];
+}</string>
+		<key>CompilerFlags</key>
+		<string>-std=c99 -O2</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>m</string>
+		<key>ID</key>
+		<integer>133061328</integer>
+		<key>Name</key>
+		<string>Objective-C -&gt; LLVM (API)</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>cat $compiler</string>
+		<key>SyntaxMode</key>
+		<string>Objective-C</string>
+	</dict>
+</array>
+</plist>

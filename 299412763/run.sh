@@ -1,0 +1,1 @@
+cd "$curdir"; runhaskell "$1" "${@:3}"

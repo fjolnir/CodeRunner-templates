@@ -1,0 +1,1 @@
+cd "$curdir"; echo -e "tell application \"AppleScript Runner\"\ndo script \"$PWD/$1\"\nend" | osascript; exit; "${@:3}"

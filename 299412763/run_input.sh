@@ -1,0 +1,1 @@
+bash "/Users/fyolnish/Library/Application Support/CodeRunner/Languages/299412763/run.sh" "$@" < "/Users/fyolnish/Library/Application Support/CodeRunner/input.txt"

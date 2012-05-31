@@ -1,0 +1,1 @@
+cd "$curdir"; /usr/local/clang/bin/lli "$2" -load /System/Library/Frameworks/Foundation.framework/Foundation "${@:3}"

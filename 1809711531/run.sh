@@ -1,0 +1,1 @@
+cd "$curdir"; luajit -joff "$1" "${@:3}"
