@@ -34,7 +34,7 @@ enc[1]="ASCII"				# ASCII
 
 
 compname=`echo "$1" | sed 's/\(.*\)\..*/\1/'`
-gcc "$1" -S -o "$compname" -finput-charset=${enc[$2]} $3
+gcc "$1" -S -o "$compname" -arch i386  $3
 status=$?
 if [ $status -eq 0 ]
 then

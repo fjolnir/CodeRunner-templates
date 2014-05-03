@@ -34,7 +34,7 @@ enc[1]="ASCII"				# ASCII
 
 
 compname=`echo "$1" | sed 's/\(.*\)\..*/\1/'`
-clang "$1" -o "$compname" -finput-charset=${enc[$2]} -ObjC $3
+clang "$1" -o "$compname" -ObjC $3
 status=$?
 if [ $status -eq 0 ]
 then

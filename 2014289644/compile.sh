@@ -34,7 +34,7 @@ enc[1]="ASCII"				# ASCII
 
 
 compname=`echo "$1" | sed 's/\(.*\)\..*/\1/'`
-clang -isysroot "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/" "$1" -o "$compname" $3
+gcc "$1" -S -o "$compname" $3
 status=$?
 if [ $status -eq 0 ]
 then

@@ -1,0 +1,1 @@
+cd "$curdir"; /usr/bin/php "$1" "${@:3}"

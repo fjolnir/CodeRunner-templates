@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
 	%@
 }</string>
 		<key>CompilerFlags</key>
-		<string>-std=gnu1x -Wall -Wno-missing-braces -Wno-unused-function -framework Accelerate -framework OpenGL -framework GLUT -fms-extensions -Wno-microsoft -framework CoreFoundation</string>
+		<string>-std=gnu1x -Wall -Wno-missing-braces -Wno-unused-function -framework Accelerate -framework OpenGL -framework GLUT -fms-extensions -Wno-microsoft -framework CoreFoundation </string>
 		<key>CompilerScript</key>
 		<true/>
 		<key>FileExtension</key>
@@ -114,16 +114,16 @@ int main(int argc, char *argv[]) {
 	<dict>
 		<key>CodeTemplate</key>
 		<string>#import &lt;Foundation/Foundation.h&gt;
+#import &lt;objc/runtime.h&gt;
+#import &lt;objc/message.h&gt;
 
 int main(int argc, char *argv[]) {
-	NSAutoreleasePool *p = [[NSAutoreleasePool alloc] init];
-
-	%@
-
-	[p release];
+	@autoreleasepool {
+		%@
+	}
 }</string>
 		<key>CompilerFlags</key>
-		<string>-std=c99 -framework Foundation -framework Cocoa -F/Library/Frameworks -framework UIKit -all_load -lobjc</string>
+		<string>-std=c99 -framework Cocoa -F/Library/Frameworks -framework UIKit -all_load -lobjc -fno-objc-arc -O0 -g -I/usr/local/llvm/include -framework Carbon -framework CoreGraphics -framework Accelerate -all_load -lreadline -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -Wall -Wextra -Wno-unused-parameter</string>
 		<key>CompilerScript</key>
 		<true/>
 		<key>FileExtension</key>
@@ -237,7 +237,7 @@ int main(int argc, char *argv[]) {
 		<key>OutputEncoding</key>
 		<integer>4</integer>
 		<key>RunCommand</key>
-		<string>luajit -joff $filename</string>
+		<string>luajit $filename</string>
 		<key>SyntaxMode</key>
 		<string>Generic</string>
 	</dict>
@@ -288,11 +288,11 @@ syscall                 ; Invoke the kernel
 		<key>ID</key>
 		<integer>3651155034</integer>
 		<key>Name</key>
-		<string>ASM</string>
+		<string>ASM (x64)</string>
 		<key>OutputEncoding</key>
 		<integer>4</integer>
 		<key>RunCommand</key>
-		<string>./$compiler</string>
+		<string>./"$compiler"</string>
 		<key>SyntaxMode</key>
 		<string>Generic</string>
 	</dict>
@@ -322,7 +322,7 @@ func main() {
 	</dict>
 	<dict>
 		<key>CompilerFlags</key>
-		<string>-std=gnu99 -Wall -Wno-missing-braces -Wno-unused-function -fverbose-asm</string>
+		<string>-std=gnu99 -Wall -Wno-missing-braces -Wno-unused-function -Os</string>
 		<key>CompilerScript</key>
 		<true/>
 		<key>FileExtension</key>
@@ -340,7 +340,7 @@ func main() {
 	</dict>
 	<dict>
 		<key>CompilerFlags</key>
-		<string>-std=gnu99 -Wall -Wno-missing-braces -Wno-unused-function -arch i386 -fverbose-asm</string>
+		<string>-std=gnu99 -Wall -Wno-missing-braces -Wno-unused-function -Os</string>
 		<key>CompilerScript</key>
 		<true/>
 		<key>FileExtension</key>
@@ -378,7 +378,7 @@ start:
 		<key>OutputEncoding</key>
 		<integer>4</integer>
 		<key>RunCommand</key>
-		<string>/usr/local/clang/bin/lli "$compiler" -load /System/Library/Frameworks/Foundation.framework/Foundation</string>
+		<string>DYLD_INSERT_LIBRARIES=/usr/lib/libobjc.dylib:/System/Library/Frameworks/Foundation.framework/Foundation lli $compiler</string>
 		<key>SyntaxMode</key>
 		<string>C</string>
 	</dict>
@@ -401,14 +401,10 @@ start:
 		<string>#import &lt;Foundation/Foundation.h&gt;
 
 int main(int argc, char *argv[]) {
-	NSAutoreleasePool *p = [[NSAutoreleasePool alloc] init];
-
 	%@
-
-	[p release];
 }</string>
 		<key>CompilerFlags</key>
-		<string>-std=c99 -O2</string>
+		<string>-std=gnu99 -O2</string>
 		<key>CompilerScript</key>
 		<true/>
 		<key>FileExtension</key>
@@ -427,24 +423,387 @@ int main(int argc, char *argv[]) {
 	<dict>
 		<key>CodeTemplate</key>
 		<string>#import &lt;Foundation/Foundation.h&gt;
+#import &lt;objc/runtime.h&gt;
+#import &lt;objc/message.h&gt;
 
 int main(int argc, char *argv[]) {
 	NSAutoreleasePool *p = [[NSAutoreleasePool alloc] init];
-
 	%@
-
 	[p release];
 }</string>
 		<key>CompilerFlags</key>
-		<string>-std=c99 -O2</string>
+		<string>-O0 -g -lffi -std=gnu99</string>
 		<key>CompilerScript</key>
 		<true/>
 		<key>FileExtension</key>
 		<string>m</string>
 		<key>ID</key>
-		<integer>133061328</integer>
+		<integer>2204332797</integer>
 		<key>Name</key>
-		<string>Objective-C -&gt; LLVM (API)</string>
+		<string>Objective-C (32 Bit)</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>./$compiler </string>
+		<key>SyntaxMode</key>
+		<string>Objective-C</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>#import &lt;Foundation/Foundation.h&gt;
+#import &lt;objc/runtime.h&gt;
+#import &lt;objc/message.h&gt;
+
+int main(int argc, char *argv[]) {
+	@autoreleasepool {
+		%@
+	}
+}</string>
+		<key>CompilerFlags</key>
+		<string>-all_load -lobjc -O0 -g -lffi</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>m</string>
+		<key>ID</key>
+		<integer>2827949958</integer>
+		<key>Name</key>
+		<string>Objective-C (ARC)</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>./$compiler </string>
+		<key>SyntaxMode</key>
+		<string>Objective-C</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>#import &lt;Foundation/Foundation.h&gt;
+
+int main(int argc, char *argv[]) {
+	%@
+}</string>
+		<key>CompilerFlags</key>
+		<string>-std=gnu99 -O0 -fobjc-arc</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>m</string>
+		<key>ID</key>
+		<integer>2578856836</integer>
+		<key>Name</key>
+		<string>Objective-C -&gt; LLVM (ARC)</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>cat $compiler </string>
+		<key>SyntaxMode</key>
+		<string>Objective-C</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>using System;
+
+class Program
+{
+	static void Main(string[] args)
+	{
+		%@
+	}
+}</string>
+		<key>CompilerFlags</key>
+		<string></string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>cs</string>
+		<key>ID</key>
+		<integer>13</integer>
+		<key>Name</key>
+		<string>C#</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>mono $compiler</string>
+		<key>SyntaxMode</key>
+		<string>C#</string>
+	</dict>
+	<dict>
+		<key>FileExtension</key>
+		<string>php</string>
+		<key>ID</key>
+		<integer>767051930</integer>
+		<key>Name</key>
+		<string>PHP</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>/usr/bin/php $filename</string>
+		<key>SyntaxMode</key>
+		<string>PHP</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string></string>
+		<key>CompilerFlags</key>
+		<string>-framework Carbon -framework AppKit -framework QuartzCore</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>tq</string>
+		<key>ID</key>
+		<integer>541889821</integer>
+		<key>Name</key>
+		<string>Tranquil</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>./$compiler</string>
+		<key>SyntaxMode</key>
+		<string>Objective-C</string>
+	</dict>
+	<dict>
+		<key>CompilerFlags</key>
+		<string>-std=gnu99 -Wall -Wno-missing-braces -Wno-unused-function</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>c</string>
+		<key>ID</key>
+		<integer>2968396368</integer>
+		<key>Name</key>
+		<string>C -&gt; ASM (ARM)</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>cat $compiler</string>
+		<key>SyntaxMode</key>
+		<string>C</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string></string>
+		<key>CompilerScript</key>
+		<false/>
+		<key>FileExtension</key>
+		<string>rb</string>
+		<key>ID</key>
+		<integer>1568074265</integer>
+		<key>Name</key>
+		<string>Macruby</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>macruby $filename</string>
+		<key>SyntaxMode</key>
+		<string>Ruby</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>section .data
+hello_world     db      "Hello World!", 0x0a
+ 
+section .text
+global start
+ 
+start:
+mov rax, 0x2000004      ; System call write = 4
+mov rdi, 1              ; Write to standard out = 1
+mov rsi, hello_world    ; The address of hello_world string
+mov rdx, 14             ; The size to write
+syscall                 ; Invoke the kernel
+mov rax, 0x2000001      ; System call number for exit = 1
+mov rdi, 0              ; Exit success = 0
+syscall                 ; Invoke the kernel
+</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>s</string>
+		<key>ID</key>
+		<integer>3563468906</integer>
+		<key>Name</key>
+		<string>ASM (x86)</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>./"$compiler"</string>
+		<key>SyntaxMode</key>
+		<string>Generic</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>#import &lt;Foundation/Foundation.h&gt;
+
+int main(int argc, char *argv[]) {
+	%@
+}</string>
+		<key>CompilerFlags</key>
+		<string>-std=gnu99 -O0 -I/usr/local/llvm/include -fobjc-arc</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>m</string>
+		<key>ID</key>
+		<integer>4253185283</integer>
+		<key>Name</key>
+		<string>Objective-C -&gt; LLVM(iOS Sim)</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>cat $compiler </string>
+		<key>SyntaxMode</key>
+		<string>Objective-C</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>section .data
+hello_world     db      "Hello World!", 0x0a
+ 
+section .text
+global start
+ 
+start:
+mov rax, 0x2000004      ; System call write = 4
+mov rdi, 1              ; Write to standard out = 1
+mov rsi, hello_world    ; The address of hello_world string
+mov rdx, 14             ; The size to write
+syscall                 ; Invoke the kernel
+mov rax, 0x2000001      ; System call number for exit = 1
+mov rdi, 0              ; Exit success = 0
+syscall                 ; Invoke the kernel
+</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>s</string>
+		<key>ID</key>
+		<integer>3556765111</integer>
+		<key>Name</key>
+		<string>ASM (ARM)</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>./"$compiler"</string>
+		<key>SyntaxMode</key>
+		<string>Generic</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>#import &lt;Foundation/Foundation.h&gt;
+
+int main(int argc, char *argv[]) {
+	%@
+}</string>
+		<key>CompilerFlags</key>
+		<string>-std=gnu99 -O2 -I/usr/local/llvm/include -fobjc-arc -mios-version-min=5.0</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>m</string>
+		<key>ID</key>
+		<integer>2428320837</integer>
+		<key>Name</key>
+		<string>Objective-C -&gt; LLVM(iPhone)</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>cat $compiler </string>
+		<key>SyntaxMode</key>
+		<string>Objective-C</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>int main(int argc, char *argv[]) {
+	%@
+}</string>
+		<key>CompilerFlags</key>
+		<string>-std=gnu1x -Wall -Wno-missing-braces -Wno-unused-function -fms-extensions -Wno-microsoft</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>c</string>
+		<key>ID</key>
+		<integer>2317660513</integer>
+		<key>Name</key>
+		<string>C Preprocessor</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>cat $compiler</string>
+		<key>SyntaxMode</key>
+		<string>C</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string></string>
+		<key>CompilerScript</key>
+		<false/>
+		<key>FileExtension</key>
+		<string>rb</string>
+		<key>ID</key>
+		<integer>2822011716</integer>
+		<key>Name</key>
+		<string>Ruby 2.0</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>~/.rbenv/versions/2.0.0-p353/bin/ruby $filename</string>
+		<key>SyntaxMode</key>
+		<string>Ruby</string>
+	</dict>
+	<dict>
+		<key>FileExtension</key>
+		<string>lua</string>
+		<key>ID</key>
+		<integer>300926293</integer>
+		<key>Name</key>
+		<string>Moonscript</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>moon $filename</string>
+		<key>SyntaxMode</key>
+		<string>Generic</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>fn main() {
+    println!("Hello World!");
+}</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>rs</string>
+		<key>ID</key>
+		<integer>1717720290</integer>
+		<key>Name</key>
+		<string>Rust</string>
+		<key>OutputEncoding</key>
+		<integer>4</integer>
+		<key>RunCommand</key>
+		<string>./$compiler</string>
+		<key>SyntaxMode</key>
+		<string>None</string>
+	</dict>
+	<dict>
+		<key>CodeTemplate</key>
+		<string>#import &lt;Foundation/Foundation.h&gt;
+
+int main(int argc, char *argv[]) {
+	%@
+}
+</string>
+		<key>CompilerFlags</key>
+		<string>-std=gnu99 -ObjC -Wall -Wno-missing-braces -Wno-unused-function -Os</string>
+		<key>CompilerScript</key>
+		<true/>
+		<key>FileExtension</key>
+		<string>c</string>
+		<key>ID</key>
+		<integer>2014289644</integer>
+		<key>Name</key>
+		<string>Objective-C -&gt; ASM (x64)</string>
 		<key>OutputEncoding</key>
 		<integer>4</integer>
 		<key>RunCommand</key>

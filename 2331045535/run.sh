@@ -1,1 +1,1 @@
-cd "$curdir"; /usr/local/clang/bin/lli "$2" -load /System/Library/Frameworks/Foundation.framework/Foundation "${@:3}"
+cd "$curdir"; DYLD_INSERT_LIBRARIES=/usr/lib/libobjc.dylib:/System/Library/Frameworks/Foundation.framework/Foundation lli "$2" "${@:3}"

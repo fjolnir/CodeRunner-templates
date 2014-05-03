@@ -34,8 +34,8 @@ enc[1]="ASCII"				# ASCII
 
 
 compname=`echo "$1" | sed 's/\(.*\)\..*/\1/'`
-LLVMCONF="/usr/local/clang/bin/llvm-config"
-g++ "$1" -o "$compname" -finput-charset=${enc[$2]} `${LLVMCONF} --cflags` `${LLVMCONF} --ldflags` `${LLVMCONF} --libfiles` -lLTO -lclang  $3
+PATH=/usr/local/clang/bin:$PATH
+clang++ "$1" -o "$compname" -finput-charset=${enc[$2]} `llvm-config --cflags` `llvm-config --ldflags` `llvm-config --libfiles` -lLTO -lclang  $3
 status=$?
 if [ $status -eq 0 ]
 then

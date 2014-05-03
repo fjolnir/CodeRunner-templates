@@ -1,0 +1,1 @@
+cd "$curdir"; macruby "$1" "${@:3}"
